@@ -207,11 +207,11 @@ Make ports 3000, 5173, and 8000 **public** in the Ports tab.
 
 | Type | Best For | Example Query |
 |------|----------|---------------|
-| **Vector** | Semantic meaning | "friends on an adventure" |
-| **Keyword** | Exact matches | "gangster police" |
-| **Hybrid** | Best of both | "revenge action" (alpha=0.5) |
+| **Vector** | Semantic meaning | "Murder movies with twist" |
+| **Keyword** | Exact matches | "Murder movies with twist" |
+| **Hybrid** | Best of both | "college friends story" (alpha=0.5) |
 | **Filtered** | With constraints | "emotional story" + genre:romance |
-| **Range** | High relevance only | threshold < 0.3 |
+| **Range** | High relevance only | "smuggling syndicate" + threshold < 0.45 |
 
 ---
 
