@@ -138,7 +138,8 @@ Complete these challenges in order to build out the full application. Look for `
 
 ### Prerequisites
 
-- **Docker & Docker Compose** (recommended) or Python 3.11+ & Node.js 20+
+- **Python 3.11+** & **Node.js 20+** (recommended)
+- **Docker & Docker Compose** (alternative)
 - **Redis Cloud account** - [redis.io/try-free](https://redis.io/try-free)
 - **OpenAI API Key** - [platform.openai.com/api-keys](https://platform.openai.com/api-keys) (for Help Center)
 
@@ -159,13 +160,24 @@ echo "REDIS_URL=redis://default:YOUR_PASSWORD@YOUR_ENDPOINT:PORT" > .env
 echo "OPENAI_API_KEY=your_key_here" >> .env
 ```
 
-### 3. Run with Docker (Recommended)
+### 3. Run Locally (Recommended)
 
+**Terminal 1 - Backend:**
 ```bash
-docker-compose up --build
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload --port 8000
 ```
 
-Access at: `http://localhost:3000`
+**Terminal 2 - Frontend:**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Access at: `http://localhost:5173`
 
 ### 4. Import Data & Create Index
 
@@ -177,21 +189,17 @@ Access at: `http://localhost:3000`
 curl -X POST http://localhost:8000/api/create-index
 ```
 
-### Alternative: Run Locally
+### Alternative: Run with Docker
 
 ```bash
-# Backend
-python -m venv venv && source venv/bin/activate
-pip install -r backend/requirements.txt
-uvicorn backend.main:app --reload --port 8000
-
-# Frontend (new terminal)
-cd frontend && npm install && npm run dev
+docker-compose up --build
 ```
+
+Access at: `http://localhost:3000`
 
 ### GitHub Codespaces
 
-Make ports 3000 and 8000 **public** in the Ports tab.
+Make ports 3000, 5173, and 8000 **public** in the Ports tab.
 
 ---
 
