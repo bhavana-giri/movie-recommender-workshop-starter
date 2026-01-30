@@ -18,20 +18,21 @@ from .config import REDIS_URL, EMBEDDING_MODEL
 
 logger = logging.getLogger("guardrails")
 
+# TODO
 # =============================================================================
-# PII Detection
+# Challenge: Create PII Detection
 # =============================================================================
 
 # Common PII patterns for detection
 PII_PATTERNS = {
-    "email": r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
-    "phone_us": r"\b(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b",
-    "phone_intl": r"\b\+\d{1,3}[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}\b",
-    "ssn": r"\b\d{3}-\d{2}-\d{4}\b",
-    "credit_card": r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b",
-    "account_number": r"\b(?:account|acct|member)[\s#:]*\d{6,}\b",
-    "ip_address": r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b",
-    "date_of_birth": r"\b(?:dob|birth|born)[\s:]*\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b",
+    # "email": r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
+    # "phone_us": r"\b(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b",
+    # "phone_intl": r"\b\+\d{1,3}[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}\b",
+    # "ssn": r"\b\d{3}-\d{2}-\d{4}\b",
+    # "credit_card": r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b",
+    # "account_number": r"\b(?:account|acct|member)[\s#:]*\d{6,}\b",
+    # "ip_address": r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b",
+    # "date_of_birth": r"\b(?:dob|birth|born)[\s:]*\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b",
 }
 
 
@@ -146,10 +147,15 @@ def create_guardrail_router(
     Returns:
         Configured SemanticRouter instance
     """
+    # TODO
+    # Challenge: Create guardrail using SemanticRouter
+    #
+    # SemanticRouter Parameters:
+    # - name: Unique name for the router index (e.g., "help_center_guardrail")
+    # - routes: List of Route objects to match against (use STREAMFLIX_ROUTE defined above)
+    # - vectorizer: Text vectorizer for embeddings
+    # - redis_client: Redis connection
     router = SemanticRouter(
-        name="help_center_guardrail",
-        routes=[STREAMFLIX_ROUTE],
-        vectorizer=vectorizer,
-        redis_client=redis_client,
+        
     )
     return router

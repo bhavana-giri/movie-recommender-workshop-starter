@@ -94,12 +94,16 @@ class LLMSemanticCache:
         self.vectorizer = HFTextVectorizer(model=EMBEDDING_MODEL)
         
         # Initialize the semantic cache from RedisVL
+
+        # TODO
+        # Challenge: Create a SemanticCache object with the following parameters
+        #
+        # - name: Name of the cache index in Redis
+        # - redis_client: Redis client
+        # - vectorizer: Vectorizer
+        # - distance_threshold: Maximum distance for a cache hit (0-1, lower = more similar)
+        # - ttl: Time-to-live for cached entries in seconds
         self.cache = SemanticCache(
-            name=name,
-            redis_client=self.client,
-            vectorizer=self.vectorizer,
-            distance_threshold=distance_threshold,
-            ttl=ttl,
         )
         
         logger.info("LLMSemanticCache initialized successfully")
@@ -116,7 +120,12 @@ class LLMSemanticCache:
         """
         try:
             # Check cache for similar queries
-            results = self.cache.check(prompt=query)
+
+            # TODO
+            # Challenge: Check the cache for similar queries
+            #
+            # - prompt: The user's query (will be embedded)
+            results = self.cache.check()
             
             if results:
                 # Cache hit - return the cached response
@@ -139,23 +148,24 @@ class LLMSemanticCache:
             logger.error(f"Error checking cache: {e}")
             return CacheResult(hit=False, query=query)
     
-    def store(self, query: str, response: str, metadata: Optional[Dict[str, Any]] = None) -> bool:
+    def store(self, query: str, response: str) -> bool:
         """
         Store a query-response pair in the semantic cache.
         
         Args:
             query: The user's query (will be embedded)
             response: The LLM's response to cache
-            metadata: Optional metadata to store with the entry
             
         Returns:
             True if stored successfully
         """
         try:
+            # TODO
+            # Challenge: Store the query-response pair in the semantic cache
+            #
+            # - prompt: The user's query (will be embedded)
+            # - response: The LLM's response to cache
             self.cache.store(
-                prompt=query,
-                response=response,
-                metadata=metadata or {},
             )
             logger.info(f"Cached response for query: '{query[:50]}...'")
             return True
